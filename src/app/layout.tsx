@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Spectral } from "next/font/google";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -7,7 +7,12 @@ import StoreProvider from "@/providers/provider/store-provider";
 
 const fontSans = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+});
+
+const spectral = Spectral({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-news",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background antialiased grainy",
+          "min-h-screen bg-background antialiased grainy font-sans",
           fontSans.className
         )}
       >

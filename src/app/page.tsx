@@ -51,7 +51,7 @@ export default function Home() {
         </section>
 
         <section className="flex gap-6 items-center justify-center border border-black/30 p-4">
-          <div className="flex items-center text-3xl font-semibold gap-8">
+          <div className="flex items-center text-3xl font-semibold gap-8 font-news">
             PAKNEWS.AI
           </div>
         </section>

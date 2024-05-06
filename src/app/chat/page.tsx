@@ -46,6 +46,21 @@ type Props = {
   };
 };
 
+const CategoryButton = ({
+  category,
+  onClick,
+}: {
+  category: string;
+  onClick: () => void;
+}) => (
+  <button
+    className="p-2 rounded-full bg-neutral-200/30 text-xs text-primary/90 flex items-center justify-center hover:bg-neutral-200/80 transition-all hover:scale-105 hover:text-primary hover:font-bold"
+    onClick={onClick}
+  >
+    <span>{category}</span>
+  </button>
+);
+
 const UserMessage = ({ message }: { message: string }) => (
   <div>
     <div className="flex items-center gap-2">
@@ -240,58 +255,57 @@ const AssistantIdByPage = ({ params }: Props) => {
   };
 
   return (
-    <div className="stretch mx-auto w-full md:w-3/4 max-w-5xl pt-24 pb-40">
+    <div className="stretch mx-auto w-full md:w-3/4 max-w-5xl py-40">
       <div className="fixed left-1/2 transform -translate-x-1/2">
         {messages && messages.length === 0 && (
-          <div className="flex items-center justify-center flex-col gap-10">
+          <>
+            {" "}
             <section className="flex gap-6 items-center justify-center  p-4">
-              <div className="flex items-center text-3xl font-semibold gap-8 tracking-wide">
+              <div className="flex items-center text-5xl font-bold gap-8 tracking-wide">
                 PAKNEWS.AI
               </div>
             </section>
-            <section>
-              {" "}
-              <div>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[280px] justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, "PPP") : <span>Pick a date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-            </section>
-
-            <div className="grid grid-cols-2 gap-10">
-              <div className="bg-neutral-200/50 p-8 rounded-xl flex items-center justify-center flex-col text-center gap-2">
-                <h2 className="font-semibold text-lg">GENERATE A SUMMARY</h2>
-                <p className="text-muted-foreground text-xs">
-                  Generate a summary of the news
-                </p>
-              </div>
-              <div className="bg-neutral-200/50 p-8 rounded-xl flex items-center justify-center flex-col text-center gap-2">
-                <h2 className="font-semibold text-lg">ASK QUESTIONS</h2>
-                <p className="text-muted-foreground text-xs">
-                  Ask Questions about todays news
-                </p>
-              </div>
+            <div className="flex items-start justify-center flex-col gap-10  mt-4">
+              <section>
+                <div className="flex flex-col gap-2">
+                  <h1 className="text-xl font-bold">Pick a Date</h1>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-[400px] justify-start text-left font-normal",
+                          !date && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {date ? format(date, "PPP") : <span>Pick a date</span>}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              </section>
+              <section>
+                <h1 className="text-xl font-bold">Generate a summary</h1>
+                <div className="grid grid-cols-5 mt-3 gap-2">
+                  <CategoryButton category="Sports" onClick={() => {}} />
+                  <CategoryButton category="Business" onClick={() => {}} />
+                  <CategoryButton category="Politics" onClick={() => {}} />
+                  <CategoryButton category="Education" onClick={() => {}} />
+                  <CategoryButton category="Finances" onClick={() => {}} />
+                  <CategoryButton category="Money" onClick={() => {}} />
+                </div>
+              </section>
             </div>
-          </div>
+          </>
         )}
       </div>
 
